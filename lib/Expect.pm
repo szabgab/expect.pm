@@ -776,11 +776,11 @@ sub _multi_expect {
 					} elsif ( $pattern->[1] eq '-re' ) {
 
 						if ($Expect::Multiline_Matching) {
-							@matchlist =
-								( ${*$exp}{exp_Accum}  =~ m/($pattern->[2])/m);
+							@matchlist = (${*$exp}{exp_Accum} =~ m/$pattern->[2]()/);
+							($match, $before, $after) = ($&, $`, $');
 						} else {
-							@matchlist =
-								( ${*$exp}{exp_Accum} =~ m/($pattern->[2])/);
+							@matchlist = (${*$exp}{exp_Accum} =~ m/$pattern->[2]()/);
+							($match, $before, $after) = ($&, $`, $');
 						}
 						if (@matchlist) {
 
